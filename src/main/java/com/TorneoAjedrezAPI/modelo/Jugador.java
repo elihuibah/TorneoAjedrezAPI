@@ -21,5 +21,4 @@ public class Jugador {
 
     private Long jugadorId;
 
-
 }
