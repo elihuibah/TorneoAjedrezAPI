@@ -4,18 +4,38 @@ import lombok.Data;
 @Data
 public class Partida {
 
-    private String ritmo; //dato 'Objeto'
+    private enum Ritmo {
+        bala(3),
+        blitz(10),
+        valid(60),
+        classic(Integer.MAX_VALUE);
+
+        private final int maxDuracionMinutos;
+
+        Ritmo(int maxDuracionMinutos) {
+            this.maxDuracionMinutos = maxDuracionMinutos;
+        }
+    }
+
+    private enum Estado {
+        enProceso,
+        pendiente,
+        finalizada
+    }
+
     private String apertura;
     private int numJugadas;
-    private String estado; //dato 'estado'
     private String resultado;
     private int tiempoTotal;
+    private Ritmo ritmo;
+    private Estado estado;
 
-    public Partida(String ritmo, String apertura, int numJugadas, String estado, int tiempoTotal) {
+    public Partida(Ritmo ritmo, Estado estado, String apertura, int numJugadas, String resultado, int tiempoTotal) {
         this.ritmo = ritmo;
+        this.estado = estado;
         this.apertura = apertura;
         this.numJugadas = numJugadas;
-        this.estado = estado;
+        this.resultado = resultado;
         this.tiempoTotal = tiempoTotal;
     }
 

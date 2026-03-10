@@ -16,6 +16,17 @@ public class JugadorServicio {
     }
 
     public Jugador crearJugador(Jugador jugador) {
+        boolean nombreinValido = jugador.getNombreCompleto().isEmpty();
+        boolean nacionalidadinValida =  jugador.getNacionalidad().isEmpty();
+
+        if (nombreinValido || jugador.getNombreCompleto() == null || nacionalidadinValida) {
+            throw new IllegalArgumentException("No se introdujo el nombre adecuadamente. Favor de intentar de nuevo.");
+        }
+
+        if(jugador.getElo() <= 0){
+            throw new IllegalArgumentException("El puntaje ELO ingresado es menor o igual a 0. Favor de intentar de nuevo.");
+        }
+
         return jugadorRepositorio.crearJugador(jugador);
     }
 
@@ -24,6 +35,10 @@ public class JugadorServicio {
     }
 
     public Jugador getJugador(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("El ID del jugador a buscar no puede ser nulo. Favor de intentar de nuevo.");
+        }
+
         return jugadorRepositorio.getJugadorPorId(id);
     }
 

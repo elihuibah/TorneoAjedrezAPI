@@ -16,12 +16,13 @@ public class JugadorRepositorio {
     private Long jugadorId = 1L;
 
     public Jugador crearJugador(Jugador jugador) {
-        if(jugador.getNombreCompleto().equals("")){
-
-        }
         jugador.setJugadorId(jugadorId++);
         jugadores.add(jugador);
         return jugador;
+    }
+
+    public List<Jugador> getTodosJugadores() {
+        return jugadores;
     }
 
     public Jugador getJugadorPorId(Long id) {
