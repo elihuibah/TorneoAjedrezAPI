@@ -21,17 +21,27 @@ public class PartidaRepositorio {
         partida.setPartidaId(partidaId++);
         partida.setJugadorBlancasId(jugadorBlancas.getJugadorId());
         partida.setJugadorNegrasId(jugadorNegras.getJugadorId());
+        partida.setRitmo(partida.getRitmo());
+        partida.setEstado(partida.getEstado());
+        partida.setPuntajeBlancas(partida.getPuntajeBlancas());
+        partida.setPuntajeNegras(partida.getPuntajeNegras());
         partidas.add(partida);
+        log.info("Partida registrada con éxito.");
         return partida;
     }
 
-    public void finalizarPartida(Partida partida, String resultado, int tiempoTotal){
+    public Partida finalizarPartida(Partida partida, String resultado, int tiempoTotal){
+        partida.setPuntajeBlancas(partida.getPuntajeBlancas());
+        partida.setPuntajeNegras(partida.getPuntajeNegras());
+        resultado = partida.getPuntajeBlancas() + " - " + partida.getPuntajeNegras();
         partida.setResultado(resultado);
         partida.setTiempoTotal(tiempoTotal);
-        log.info("Partida finalizada");
+        log.info("Partida finalizada con éxito.");
+        return null;
     }
 
-    public Partida getPartidaPorId(Long id) {
+    public Partida getPartida(Long id) {
         return partidas.stream().filter(partida  -> partida.getPartidaId().equals(id)).findFirst().orElse(null);
     }
+
 }

@@ -2,6 +2,7 @@ package com.TorneoAjedrezAPI.servicio;
 
 import com.TorneoAjedrezAPI.modelo.Jugador;
 import com.TorneoAjedrezAPI.repositorio.JugadorRepositorio;
+import com.TorneoAjedrezAPI.repositorio.PartidaRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 public class JugadorServicio {
 
     private final JugadorRepositorio jugadorRepositorio;
+    private final PartidaRepositorio partidaRepositorio;
 
-    public JugadorServicio(JugadorRepositorio jugadorRepositorio) {
+    public JugadorServicio(JugadorRepositorio jugadorRepositorio, PartidaRepositorio partidaRepositorio) {
         this.jugadorRepositorio = jugadorRepositorio;
+        this.partidaRepositorio = partidaRepositorio;
     }
 
     public Jugador crearJugador(Jugador jugador) {
@@ -43,10 +46,23 @@ public class JugadorServicio {
     }
 
     public Jugador actualizarJugador(Long id, Jugador jugadorActualizar) {
+        if (id == null) {
+            throw new IllegalArgumentException("No se encontró el jugador a actualizar. Favor de intentar de nuevo.");
+        }
+        if (jugadorActualizar.getNombreCompleto().isEmpty()){
+            throw new IllegalArgumentException("No se designó nombre completo para el jugador a actualizar. Favor de intentar de nuevo.");
+        }
+        if (jugadorActualizar.getElo() <= 0){
+            throw new IllegalArgumentException("El puntaje ELO ingresado es menor o igual a 0. Favor de intentar de nuevo.");
+        }
         return jugadorRepositorio.actualizarJugador(id, jugadorActualizar);
     }
 
     public boolean borrarJugador(Long id) {
+        if(id == null) {
+            throw new IllegalArgumentException("No se encontró el jugador a actualizar. Favor de intentar de nuevo.");
+        }
+
         return jugadorRepositorio.eliminarJugador(id);
     }
 

@@ -1,14 +1,12 @@
 package com.TorneoAjedrezAPI.repositorio;
 
 import com.TorneoAjedrezAPI.modelo.Jugador;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Data
 
 public class JugadorRepositorio {
     private final List<Jugador> jugadores = new ArrayList<>();
@@ -21,7 +19,7 @@ public class JugadorRepositorio {
         return jugador;
     }
 
-    public List<Jugador> getTodosJugadores() {
+    public List<Jugador> getJugadores() {
         return jugadores;
     }
 
