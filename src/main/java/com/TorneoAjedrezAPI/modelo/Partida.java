@@ -10,8 +10,8 @@ public class Partida {
     private int tiempoTotal;
     private RitmoPartidaEnum ritmo;
     private EstadoPartidaEnum estado;
-    private int puntajeBlancas;
-    private int puntajeNegras;
+    private double puntajeBlancas;
+    private double puntajeNegras;
 
     public Partida(RitmoPartidaEnum ritmo, EstadoPartidaEnum estado, String apertura, int numJugadas, String resultado, int tiempoTotal, int puntajeBlancas, int puntajeNegras) {
         this.ritmo = ritmo;

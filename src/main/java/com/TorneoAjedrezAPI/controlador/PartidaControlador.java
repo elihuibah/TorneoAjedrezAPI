@@ -24,15 +24,15 @@ public class PartidaControlador {
         return new ResponseEntity<>(nuevaPartida, HttpStatus.OK);
     }
 
-    @PutMapping("{id}/finalizar")
-    public ResponseEntity<Partida> finalizarPartida(@PathVariable Long id, @RequestBody Partida partida, String resultado, int tiempoTotal) {
-        Partida partidaFinalizada = partidaServicio.finalizarPartida(partida, resultado, tiempoTotal);
+    @PostMapping("{partidaId}/finalizar")
+    public ResponseEntity<Partida> finalizarPartida(@PathVariable Long partidaId, @RequestBody Partida partida, @RequestParam String resultado, @RequestParam int tiempoTotal) {
+        Partida partidaFinalizada = partidaServicio.finalizarPartida(partidaId, resultado, tiempoTotal);
         return new ResponseEntity<>(partidaFinalizada, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Partida> obtenerPartida(@PathVariable Long id){
-        Partida partida = partidaServicio.getPartida(id);
+    @GetMapping("{partidaId}")
+    public ResponseEntity<Partida> obtenerPartida(@PathVariable Long partidaId){
+        Partida partida = partidaServicio.getPartida(partidaId);
         return new ResponseEntity<>(partida, HttpStatus.OK);
     }
 

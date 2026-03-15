@@ -13,14 +13,13 @@ public class JugadorRepositorio {
 
     private Long jugadorId = 1L;
 
+    public List<Jugador> getTodosJugadores() {
+        return jugadores;
+    }
     public Jugador crearJugador(Jugador jugador) {
         jugador.setJugadorId(jugadorId++);
         jugadores.add(jugador);
         return jugador;
-    }
-
-    public List<Jugador> getJugadores() {
-        return jugadores;
     }
 
     public Jugador getJugadorPorId(Long id) {

@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CampoIncompleto.class)
-    public ResponseEntity<String> handleNombreIncompleto(CampoIncompleto nombreIncompleto) {
-        return new ResponseEntity<>(nombreIncompleto.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException illegalArgException) {
+        return new ResponseEntity<>(illegalArgException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<String> handleELOInsuficiente(Exception eloInsuficiente) {
-        return new ResponseEntity<>(eloInsuficiente.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(RecursoNoEncontrado.class)
+    public ResponseEntity<String> handleNotFoundArgument(RecursoNoEncontrado noEncontrado){
+        return new ResponseEntity<>(noEncontrado.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(PartidaActiva.class)
+    public ResponseEntity<String> handlePartidaActiva(PartidaActiva partidaActiva) {
+        return new ResponseEntity<>(partidaActiva.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }

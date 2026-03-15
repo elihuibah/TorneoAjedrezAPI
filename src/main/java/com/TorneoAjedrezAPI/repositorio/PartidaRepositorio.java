@@ -26,22 +26,19 @@ public class PartidaRepositorio {
         partida.setPuntajeBlancas(partida.getPuntajeBlancas());
         partida.setPuntajeNegras(partida.getPuntajeNegras());
         partidas.add(partida);
-        log.info("Partida registrada con éxito.");
         return partida;
     }
 
     public Partida finalizarPartida(Partida partida, String resultado, int tiempoTotal){
         partida.setPuntajeBlancas(partida.getPuntajeBlancas());
         partida.setPuntajeNegras(partida.getPuntajeNegras());
-        resultado = partida.getPuntajeBlancas() + " - " + partida.getPuntajeNegras();
-        partida.setResultado(resultado);
+        partida.setResultado(partida.getPuntajeBlancas() + "-" + partida.getPuntajeNegras());
         partida.setTiempoTotal(tiempoTotal);
-        log.info("Partida finalizada con éxito.");
         return null;
     }
 
-    public Partida getPartida(Long id) {
-        return partidas.stream().filter(partida  -> partida.getPartidaId().equals(id)).findFirst().orElse(null);
+    public Partida getPartida(Long partidaId) {
+        return partidas.stream().filter(partida  -> partida.getPartidaId().equals(partidaId)).findFirst().orElse(null);
     }
 
 }

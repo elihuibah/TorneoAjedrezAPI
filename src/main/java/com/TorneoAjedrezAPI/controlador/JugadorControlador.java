@@ -25,24 +25,24 @@ public class JugadorControlador {
 
     @GetMapping
     public ResponseEntity<List<Jugador>> obtenerJugadores(){
-        return new ResponseEntity<>(jugadorServicio.getJugadores(), HttpStatus.OK);
+        return new ResponseEntity<>(jugadorServicio.getTodosJugadores(), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Jugador> getJugador(@PathVariable long id){
-        Jugador jugador = jugadorServicio.getJugador(id);
+    @GetMapping("{jugadorId}")
+    public ResponseEntity<Jugador> getJugador(@PathVariable long jugadorId){
+        Jugador jugador = jugadorServicio.getJugador(jugadorId);
         return new ResponseEntity<>(jugador, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Jugador> actualizarJugador(@PathVariable long id, @RequestBody Jugador jugador){
-        Jugador jugadorActualizado = jugadorServicio.actualizarJugador(id, jugador);
+    @PutMapping("{jugadorId}")
+    public ResponseEntity<Jugador> actualizarJugador(@PathVariable long jugadorId, @RequestBody Jugador jugador){
+        Jugador jugadorActualizado = jugadorServicio.actualizarJugador(jugadorId, jugador);
         return new ResponseEntity<>(jugadorActualizado, HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> eliminarJugador(@PathVariable long id){
-        boolean jugadorEliminado = jugadorServicio.borrarJugador(id);
+    @DeleteMapping("{jugadorId}")
+    public ResponseEntity<String> eliminarJugador(@PathVariable long jugadorId){
+        boolean jugadorEliminado = jugadorServicio.borrarJugador(jugadorId);
         return new ResponseEntity<>("El jugador " + jugadorEliminado, HttpStatus.OK);
     }
 
